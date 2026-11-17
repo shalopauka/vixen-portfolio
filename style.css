@@ -1,7 +1,12 @@
+/* --- БАЗОВЫЕ НАСТРОЙКИ --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -17,108 +22,47 @@ h1, h2, h3 {
     text-transform: uppercase;
 }
 
-/* --- ШАПКА --- */
-header {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Высота на весь экран */
-    background-color: #000; /* Черный фон на случай, если картинка не грузится */
-    background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2000&auto=format&fit=crop'); /* Темная футуристичная картинка */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.6); /* Затемнение */
-    z-index: 1;
-}
-
-.top-bar {
-    position: relative;
-    z-index: 2;
+/* --- МЕНЮ --- */
+.simple-nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 40px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: #111;
+    border-bottom: 1px solid #333;
 }
 
-.small-nav {
-    display: flex;
-    gap: 20px;
-}
-
-.small-nav a {
+.simple-nav a {
     color: #fff;
     text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 2px;
     transition: 0.3s;
 }
 
-.small-nav a:hover {
-    color: #e67e22; /* Оранжевый при наведении */
+.simple-nav a:hover {
+    color: #e67e22;
 }
 
-/* --- ГЛАВНЫЙ ЗАГОЛОВОК С ГЛИТЧЕМ --- */
+/* --- ОГРОМНОЕ ИМЯ --- */
+.hero-name {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    border-bottom: 1px solid #333;
+}
+
 .main-title {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20vw;
-    letter-spacing: -5px;
-    white-space: nowrap;
+    font-size: 15vw;
     color: transparent;
-    -webkit-text-stroke: 2px #fff; /* Контур */
-}
-
-.main-title::before,
-.main-title::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-}
-
-.main-title::before {
-    left: 3px;
-    text-shadow: -3px 0 red;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
-}
-
-.main-title::after {
-    left: -3px;
-    text-shadow: 3px 0 blue;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
-}
-
-@keyframes glitch-anim {
-    0% { clip: rect(22px, 9999px, 83px, 0); }
-    20% { clip: rect(62px, 9999px, 15px, 0); }
-    40% { clip: rect(5px, 9999px, 75px, 0); }
-    60% { clip: rect(84px, 9999px, 30px, 0); }
-    80% { clip: rect(15px, 9999px, 90px, 0); }
-    100% { clip: rect(50px, 9999px, 10px, 0); }
-}
-
-@keyframes glitch-anim2 {
-    0% { clip: rect(65px, 9999px, 100px, 0); }
-    20% { clip: rect(10px, 9999px, 50px, 0); }
-    40% { clip: rect(80px, 9999px, 20px, 0); }
-    60% { clip: rect(30px, 9999px, 70px, 0); }
-    80% { clip: rect(90px, 9999px, 40px, 0); }
-    100% { clip: rect(20px, 9999px, 60px, 0); }
+    -webkit-text-stroke: 2px #fff;
+    font-family: 'Syncopate', sans-serif;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    position: relative;
 }
 
 /* --- БЕГУЩАЯ СТРОКА --- */
@@ -160,12 +104,14 @@ header::before {
     top: 150px;
     left: 10%;
     transform: rotate(-3deg);
+    animation: slideInLeft 1.5s ease-out forwards;
 }
 
 .img-2 {
     top: 100px;
     right: 15%;
     transform: rotate(2deg);
+    animation: slideInRight 1.5s ease-out forwards;
 }
 
 .image-card img {
@@ -200,27 +146,60 @@ header::before {
     color: #aaa;
 }
 
-/* --- ШУМ ПОВЕРХ ВСЕГО --- */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Noise.png');
-    opacity: 0.05;
-    z-index: 9999;
+/* --- НАВЫКИ --- */
+.skills-section {
+    background-color: #1a1a1a;
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
 }
-/* --- БЛОК О СЕБЕ --- */
+
+.skills-section h2 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.skill-item {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #e67e22;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.skill-item:hover {
+    background-color: #e67e22;
+    color: #111;
+}
+
+/* --- О СЕБЕ --- */
 .about-section {
     background-color: #111;
     padding: 100px 50px;
     display: flex;
     justify-content: center;
-    border-top: 1px solid #333; /* Тонкая линия-разделитель */
+    border-top: 1px solid #333;
 }
 
 .about-content {
-    max-width: 800px; /* Ограничиваем ширину текста для удобства чтения */
+    max-width: 800px;
 }
 
 .about-content h2 {
@@ -233,11 +212,10 @@ body::after {
 .about-content p {
     font-size: 18px;
     line-height: 1.6;
-    color: #aaa; /* Светло-серый текст */
+    color: #aaa;
     margin-bottom: 20px;
 }
 
-/* Ссылки на соцсети */
 .social-links {
     margin-top: 40px;
     display: flex;
@@ -253,92 +231,18 @@ body::after {
     text-transform: uppercase;
     font-size: 14px;
     transition: 0.3s;
-    border-radius: 30px; /* Кнопки-таблетки */
+    border-radius: 30px;
 }
 
 .social-links a:hover {
-    background-color: #e67e22; /* Оранжевый при наведении */
+    background-color: #e67e22;
     color: #fff;
 }
 
 /* --- ПОДВАЛ --- */
 footer {
     background-color: #000;
-    color: #555;
-    text-align: center;
-    padding: 30px;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-html {
-    scroll-behavior: smooth;
-}
-
-.simple-nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-    background-color: #111;
-    border-bottom: 1px solid #333;
-}
-
-.simple-nav a {
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 2px;
-    transition: 0.3s;
-}
-
-.simple-nav a:hover {
-    color: #e67e22;
-}
-/* --- БЛОК НАВЫКОВ --- */
-.skills-section {
-    background-color: #1a1a1a;
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.skills-section h2 {
-    font-size: 36px;
-    color: #fff;
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-}
-
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap; /* Позволяет переносить элементы на новую строку */
-    justify-content: center;
-    gap: 15px;
-    max-width: 800px;
-    margin: 0 auto; /* Центрируем */
-}
-
-.skill-item {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #e67e22; /* Оранжевая рамка */
-    padding: 10px 20px;
-    border-radius: 30px; /* Кнопки-таблетки */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
-
-.skill-item:hover {
-    background-color: #e67e22; /* Заливаем оранжевым при наведении */
-    color: #111;
-}
-/* --- ПОДВАЛ --- */
-footer {
-    background-color: #000; /* Абсолютно черный фон */
-    color: #666; /* Темно-серый текст */
+    color: #666;
     text-align: center;
     padding: 40px 20px;
     font-size: 14px;
@@ -350,27 +254,101 @@ footer p {
     margin: 5px 0;
 }
 
-/* --- ЭФФЕКТ ШУМА (GRAIN) --- */
+/* --- ЭФФЕКТ ШУМА --- */
 body::after {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; /* Чтобы шум не мешал кликать по ссылкам */
+    pointer-events: none;
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Noise.png');
-    opacity: 0.06; /* Прозрачность шума (6%) */
-    z-index: 9999; /* Поверх всего */
-}
-/* --- ПОДВАЛ --- */
-footer {
-    background-color: #000; 
-    color: #666; 
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    border-top: 1px solid #222;
+    opacity: 0.06;
+    z-index: 9999;
 }
 
-footer p {
-    margin: 5px 0;
+/* --- АНИМАЦИИ --- */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-100px) rotate(-3deg); }
+    to { opacity: 1; transform: translateX(0) rotate(-3deg); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(100px) rotate(2deg); }
+    to { opacity: 1; transform: translateX(0) rotate(2deg); }
+}
+
+/* =========================================
+   АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Скрываем огромное имя на телефоне, чтобы не мешало */
+    .hero-name {
+        display: none; 
+    }
+
+    .simple-nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+    .simple-nav a {
+        font-size: 12px;
+    }
+
+    .marquee {
+        font-size: 10px;
+        padding: 10px 0;
+    }
+
+    /* Картинки друг под другом */
+    .drop-section {
+        height: auto;
+        padding: 40px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image-card {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 40px;
+        transform: none;
+    }
+
+    .text-block {
+        position: relative;
+        right: 0;
+        top: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .text-block h2 {
+        font-size: 20px;
+    }
+
+    .skills-section {
+        padding: 50px 15px;
+    }
+    .skills-section h2 {
+        font-size: 24px;
+    }
+
+    .about-section {
+        padding: 50px 15px;
+    }
+    .about-content h2 {
+        font-size: 28px;
+        text-align: center;
+    }
+    .about-content p {
+        font-size: 15px;
+        text-align: center;
+    }
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
